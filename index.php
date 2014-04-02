@@ -1,7 +1,7 @@
 <?php
 
-require('lib/gantti.php'); 
-require('data.php'); 
+require('lib/gantti.php');
+require('data.php');
 
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
@@ -18,8 +18,8 @@ $gantti = new Gantti($data, array(
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <title>Mahatma Gantti – A simple PHP Gantt Class</title>
+
+  <title>Loopfirst Gantt Chart</title>
   <meta charset="utf-8" />
 
   <link rel="stylesheet" href="styles/css/screen.css" />
@@ -35,8 +35,8 @@ $gantti = new Gantti($data, array(
 
 <header>
 
-<h1>Mahatma Gantti</h1>
-<h2>A simple PHP Gantt Class</h2>
+<h1>Loopfirst</h1>
+<h2>Loopfirst Development Gantt Chart</h2>
 
 </header>
 
@@ -44,12 +44,6 @@ $gantti = new Gantti($data, array(
 
 <article>
 
-<h2>Download</h2>
-
-<p>
-  You can download the source for Gantti form Github:<br />
-  <a href="https://github.com/bastianallgeier/gantti"><strong>https://github.com/bastianallgeier/gantti</strong></a>
-</p>
 
 <h2>Features</h2>
 
@@ -67,7 +61,7 @@ $gantti = new Gantti($data, array(
 <p><pre><code><?php $code = "
 <?php
 
-require('lib/gantti.php'); 
+require('lib/gantti.php');
 
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
@@ -76,20 +70,20 @@ setlocale(LC_ALL, 'en_US');
 
 \$data[] = array(
   'label' => 'Project 1',
-  'start' => '2012-04-20', 
+  'start' => '2012-04-20',
   'end'   => '2012-05-12'
 );
 
 \$data[] = array(
   'label' => 'Project 2',
-  'start' => '2012-04-22', 
-  'end'   => '2012-05-22', 
+  'start' => '2012-04-22',
+  'end'   => '2012-05-22',
   'class' => 'important',
 );
 
 \$data[] = array(
   'label' => 'Project 3',
-  'start' => '2012-05-25', 
+  'start' => '2012-05-25',
   'end'   => '2012-06-20'
   'class' => 'urgent',
 );
@@ -114,13 +108,13 @@ echo htmlentities(trim($code)); ?>
 <p>Data is defined as an associative array (see the example above).</p>
 
 <p>
-  For each project you get the following options: 
-  
+  For each project you get the following options:
+
   <ul>
-    <li>label: The label will be displayed in the sidebar</li>  
-    <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>  
-    <li>end:   The end date. Must be in the following format: YYYY-MM-DD</li>  
-    <li>class: An optional class name. (available by default: important, urgent)</li>  
+    <li>label: The label will be displayed in the sidebar</li>
+    <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
+    <li>end:   The end date. Must be in the following format: YYYY-MM-DD</li>
+    <li>class: An optional class name. (available by default: important, urgent)</li>
   </ul>
 
 </p>
@@ -143,10 +137,10 @@ echo htmlentities(trim($code)); ?>
 
 <p>
 The default stylesheet is available as .scss (<a href="http://sass-lang.com/">SASS</a>)
-It includes a set of predefined variables, which you can use to adjust the styles very easily. 
+It includes a set of predefined variables, which you can use to adjust the styles very easily.
 </p>
 <p>
-You can check out the full SASS file over here: 
+You can check out the full SASS file over here:
 <a href="https://github.com/bastianallgeier/gantti/blob/master/styles/scss/gantti.scss">https://github.com/bastianallgeier/gantti/blob/master/styles/scss/gantti.scss</a>
 </p>
 
@@ -169,8 +163,6 @@ Bastian Allgeier<br />
 MIT License – <a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>
 
 </article>
-
-<a href="https://github.com/bastianallgeier/gantti"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 </body>
 
