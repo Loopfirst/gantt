@@ -3,7 +3,7 @@
 $back = array();
 
 $back[] = array(
-  'label' => 'Project 1',
+  'label' => 'Grunt',
   'start' => '2012-04-20',
   'end'   => '2012-05-12'
 );

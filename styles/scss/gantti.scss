@@ -1,7 +1,7 @@
 /* Sass Variables */
 
-$color-background-dark:  #002b36;
-$color-background-light: #073642;
+$color-background-dark:  #25363c;
+$color-background-light: #354348;
 
 $color-lines:            darken($color-background-dark, 3%);
 $color-today:            #fff;
@@ -12,9 +12,9 @@ $color-text-label-aside: $color-text;
 $color-text-label-block: #fff;
 $color-text-title:       #fff;
 
-$color-block-default:    #268bd2;
-$color-block-important:  #b58900;
-$color-block-urgent:     #d33682;
+$color-block-default:    #24ade3;
+$color-block-important:  #f05a24;
+$color-block-urgent:     #e32551;
 
 $color-scrollbar-back:   $color-background-dark;
 $color-scrollbar-thumb:  #93a1a1;
@@ -44,8 +44,7 @@ $aside-width: 200px;
   left: 20px;
   font-size: 20px;
   color: $color-text-title;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+  font-weight: 300;
 }
 
 /* sidebar */
