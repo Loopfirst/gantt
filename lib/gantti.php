@@ -24,9 +24,10 @@ class Gantti {
       'today'      => true,
     );
 
+
     $this->options = array_merge($defaults, $params);
     $this->cal     = new Calendar();
-    $this->data    = $data;
+    $this->data    =  $data;
     $this->seconds = 60*60*24;
 
     $this->cellstyle = 'style="width: ' . $this->options['cellwidth'] . 'px; height: ' . $this->options['cellheight'] . 'px"';
@@ -43,7 +44,9 @@ class Gantti {
       $this->blocks[] = array(
         'label' => $d['label'],
         'start' => $start = strtotime($d['start']),
-        'end'   => $end   = strtotime($d['end']),
+        'end'   => $end   = strtotime(
+            (!isset($d['end'])) ? '2014-12-31' : $d['end']
+        ),
         'class' => @$d['class']
       );
 

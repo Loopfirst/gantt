@@ -77,7 +77,7 @@ $gantt = new Gantti($gantt, array(
 
 <h2>Usage</h2>
 
-<p>Check the <code>/data</code> folder for code.</p>
+<p>Data is stored in data/</p>
 
 <p><pre><code><?php $code = "
 <?php
@@ -85,23 +85,14 @@ $gantt = new Gantti($gantt, array(
 \$data = array();
 
 \$data[] = array(
-  'label' => 'Project 1',
-  'start' => '2012-04-20',
-  'end'   => '2012-05-12'
+    'label' => 'Label 1',
+    'start' => 'YYYY-MM-DD',
+    ['end'   => 'YYYY-MM-DD',]
+    ['class' => '', 'important', or 'urgent',]
 );
 
 \$data[] = array(
-  'label' => 'Project 2',
-  'start' => '2012-04-22',
-  'end'   => '2012-05-22',
-  'class' => 'important',
-);
-
-\$data[] = array(
-  'label' => 'Project 3',
-  'start' => '2012-05-25',
-  'end'   => '2012-06-20'
-  'class' => 'urgent',
+    ...
 );
 
 ?>
@@ -121,8 +112,11 @@ echo htmlentities(trim($code)); ?>
   <ul>
     <li>label: The label will be displayed in the sidebar</li>
     <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
+
+    <li><p></p></li>
+    <li>optional</li>
     <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
-    <li>class: An optional class name. (available by default: important, urgent)</li>
+    <li>class: Available by default: important, urgent</li>
   </ul>
 
 </p>
