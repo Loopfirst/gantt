@@ -33,12 +33,12 @@ module.exports = function(grunt) {
                     force: true,
                     environment: "development"
                 }
-            }
+            },
             clean: {
                 options: {
                     clean: true
                 }
-            }
+            },
             watch: {
                 options: {
                     config: 'config.rb',
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             watchers: {
-                tasks: ['php', 'compass:watch']
+                tasks: ['php', 'compass:watch'],
                 options: {
                     logConcurrentOutput: true
                 }
