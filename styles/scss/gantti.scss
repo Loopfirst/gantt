@@ -24,17 +24,21 @@ $aside-width: 200px;
 /* gantt styles */
 .gantt {
   position: relative;
-  overflow: hidden;  
+  overflow: hidden;
   color: $color-text;
   background: $color-background-dark;
 }
 .gantt * {
   font-weight: normal;
   margin: 0;
-  padding: 0;  
+  padding: 0;
 }
 .gantt li {
   list-style: none;
+}
+body div {
+    padding-bottom: 15px;
+    padding-left: 2px;
 }
 
 /* optional title */
@@ -186,7 +190,7 @@ $aside-width: 200px;
 }
 
 /* scrollbar styles */
-.gantt ::-webkit-scrollbar {    
+.gantt ::-webkit-scrollbar {
   background: $color-scrollbar-back;
   height: 10px;
 }
