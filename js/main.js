@@ -11,7 +11,6 @@ function kickoff() {
 function scrollToToday() {
     $("body > div[id]").each(function() {
         var id = "#" + $(this).attr('id');
-        console.log(id);
 
         try {
             $(id + " .today")[0].scrollIntoView();
