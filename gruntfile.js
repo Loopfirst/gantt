@@ -50,9 +50,19 @@ module.exports = function(grunt) {
         },
 
 
+        watch: {
+            files: {
+                files: ['styles/**', 'index.php', 'data/**'],
+                options: {
+                    livereload: true
+                }
+            }
+        },
+
+
         concurrent: {
             watchers: {
-                tasks: ['php', 'compass:watch'],
+                tasks: ['php', 'compass:watch', 'watch'],
                 options: {
                     logConcurrentOutput: true
                 }
