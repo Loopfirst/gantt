@@ -121,7 +121,7 @@ echo htmlentities(trim($code)); ?>
   <ul>
     <li>label: The label will be displayed in the sidebar</li>
     <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
-    <li>end:   The end date. Must be in the following format: YYYY-MM-DD</li>
+    <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
     <li>class: An optional class name. (available by default: important, urgent)</li>
   </ul>
 
