@@ -1,3 +1,6 @@
 .sass-cache/
 node_modules/
 styles/css/*
+
+# ignoring only because its in dropbox
+data/*
