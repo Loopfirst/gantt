@@ -47,11 +47,18 @@ $backend = new Gantti($back, array(
 <h1>Loopfirst</h1>
 <h2>Development Gantt Chart</h2>
 
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="js/main.js"></script>
+
 </header>
 
-<?php echo $frontend ?>
+<div id="frontend">
+  <?php echo $frontend ?>
+</div>
 
-<?php echo $backend ?>
+<div id="backend">
+  <?php echo $backend ?>
+</div>
 
 <article>
 
