@@ -217,7 +217,7 @@ class Gantti
             $width  = round($days * $this->options['cellwidth'] - 9);
             $height = round($this->options['cellheight']-8);
             $class  = ($block['class']) ? ' ' . $block['class'] : '';
-            $days   = ($days > 100) ? '' : $days;
+            $days   = ($days > 100 || $days == 1) ? '' : $days;
             $info   = $block['info'];
 
             $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . $info .'">
