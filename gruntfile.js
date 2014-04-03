@@ -44,7 +44,8 @@ module.exports = function(grunt) {
                     config: 'config.rb',
                     force: true,
                     environment: 'development',
-                    watch: true
+                    watch: true,
+                    // sourcemap: true
                 }
             }
         },
