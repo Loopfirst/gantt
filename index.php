@@ -110,7 +110,7 @@ echo htmlentities(trim($code)); ?>
   For each project you get the following options:
 
   <ul>
-    <li>label: The label will be displayed in the sidebar</li>
+    <li>label: The label will be displayed in the sidebar (same lable, same line)</li>
     <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
 
     <li><p></p></li>
