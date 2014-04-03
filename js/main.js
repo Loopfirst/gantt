@@ -1,10 +1,16 @@
 $(document).ready(kickoff);
-
+$(document).tooltip({
+    tooltipClass: "tooltip",
+    hide: false,
+    show: false,
+    track: true
+});
 
 
 
 function kickoff() {
     scrollToToday();
+    hoverForInfo();
 }
 
 
@@ -24,4 +30,10 @@ function scrollToToday() {
     });
 
     $(document).scrollTop(0);
+}
+
+
+function hoverForInfo() {
+    // $('.gantt-block').hover();
+    null;
 }

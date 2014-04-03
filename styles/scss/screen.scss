@@ -83,3 +83,10 @@ pre code {
   box-shadow: none;
   border-radius: 0;
 }
+
+.tooltip {
+  position: fixed;
+  background: white;
+  z-index: 10001;
+  height: 5px;
+}

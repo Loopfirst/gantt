@@ -50,8 +50,9 @@ class Gantti
                 'start' => $start = strtotime($d['start']),
                 'end'   => $end   = strtotime(
                     (!isset($d['end'])) ? '2014-12-31' : $d['end']
-                    ),
-                'class' => @$d['class']
+                ),
+                'class' => @$d['class'],
+                'info'  => @$d['info']
                 );
 
             if(!$this->first || $this->first > $start) $this->first = $start;
@@ -216,9 +217,11 @@ class Gantti
             $width  = round($days * $this->options['cellwidth'] - 9);
             $height = round($this->options['cellheight']-8);
             $class  = ($block['class']) ? ' ' . $block['class'] : '';
+            $days   = ($days > 100) ? '' : $days;
+            $info   = $block['info'];
 
-            $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . (isset($block['info']) ? $block['info'] : '') . '">
-                <strong class="gantt-block-label">' . (($days > 100) ? '' : $days) . '</strong>
+            $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . $info .'">
+                <strong class="gantt-block-label">' . $days . '</strong>
             </span>';
 
         }

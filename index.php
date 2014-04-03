@@ -56,6 +56,8 @@ $gantt = new Gantti($gantt, array(
 <h2>Development Gantt Chart</h2>
 
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 <script src="js/main.js"></script>
 
 </header>
@@ -89,6 +91,7 @@ $gantt = new Gantti($gantt, array(
     'start' => 'YYYY-MM-DD',
     ['end'   => 'YYYY-MM-DD',]
     ['class' => '', 'important', or 'urgent',]
+    ['info'  => 'On hover tooltip']
 );
 
 \$data[] = array(
@@ -117,6 +120,7 @@ echo htmlentities(trim($code)); ?>
     <li>optional</li>
     <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
     <li>class: Available by default: important, urgent</li>
+    <li>info: Extra info
   </ul>
 
 </p>
