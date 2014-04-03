@@ -4,9 +4,17 @@ require('lib/gantti.php');
 require('data/front.php');
 require('data/back.php');
 require('data/gantt.php');
+require('data/git_branches.php');
 
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
+
+$git_branches = new Gantti($git_branches, array(
+  'title'      => 'Git Branches',
+  'cellwidth'  => 25,
+  'cellheight' => 35,
+  'today'      => true
+));
 
 $frontend = new Gantti($front, array(
   'title'      => 'Front End',
@@ -61,6 +69,10 @@ $gantt = new Gantti($gantt, array(
 <script src="js/main.js"></script>
 
 </header>
+
+<div id="git_branches">
+  <?php echo $git_branches ?>
+</div>
 
 <div id="frontend">
   <?php echo $frontend ?>
