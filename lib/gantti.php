@@ -217,7 +217,9 @@ class Gantti
             $height = round($this->options['cellheight']-8);
             $class  = ($block['class']) ? ' ' . $block['class'] : '';
 
-            $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . (($days > 100) ? '' : $days) . '</strong></span>';
+            $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . (isset($block['info']) ? $block['info'] : '') . '">
+                <strong class="gantt-block-label">' . (($days > 100) ? '' : $days) . '</strong>
+            </span>';
 
         }
 
