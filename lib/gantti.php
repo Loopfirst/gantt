@@ -92,8 +92,27 @@ class Gantti {
     // sidebar with labels
     $html[] = '<aside>';
     $html[] = '<ul class="gantt-labels" style="margin-top: ' . (($this->options['cellheight']*2)+1) . 'px">';
+
+    $firstTimeEnter=true;
+    $rememberLastId;
+
     foreach($this->blocks as $i => $block) {
-      $html[] = '<li class="gantt-label"><strong ' . $cellstyle . '>' . $block['label'] . '</strong></li>';
+
+      if($firstTimeEnter) {
+        $html[] = '<li class="gantt-label"><strong ' . $cellstyle . '>' . $block['label'] . '</strong></li>';
+
+        $firstTimeEnter=false;
+        $rememberLastId=$block['label'];
+
+      }
+      else
+      if($rememberLastId!=$block['label']){
+        $html[] = '<li class="gantt-label"><strong ' . $cellstyle . '>' . $block['label'] . '</strong></li>';
+
+
+      $rememberLastId=$block['label'];
+      }
+
     }
     $html[] = '</ul>';
     $html[] = '</aside>';
@@ -128,31 +147,78 @@ class Gantti {
     // main items
     $html[] = '<ul class="gantt-items" ' . $totalstyle . '>';
 
+    $firstTimeEnter=true;
+    $rememberLastId="";
     foreach($this->blocks as $i => $block) {
 
-      $html[] = '<li class="gantt-item">';
+      if($firstTimeEnter==true){
 
-      // days
-      $html[] = '<ul class="gantt-days">';
-      foreach($this->days as $day) {
+        $html[] = '<li class="gantt-item">';
 
-        $weekend = ($day->isWeekend()) ? ' weekend' : '';
-        $today   = ($day->isToday())   ? ' today' : '';
+        // days
+        $html[] = '<ul class="gantt-days">';
+        foreach($this->days as $day) {
 
-        $html[] = '<li class="gantt-day' . $weekend . $today . '" ' . $wrapstyle . '><span ' . $cellstyle . '>' . $day . '</span></li>';
+          $weekend = ($day->isWeekend()) ? ' weekend' : '';
+          $today   = ($day->isToday())   ? ' today' : '';
+
+          $html[] = '<li class="gantt-day' . $weekend . $today . '" ' . $wrapstyle . '><span ' . $cellstyle . '>' . $day . '</span></li>';
+        }
+        $html[] = '</ul>';
+
+        // the block
+        $days   = (($block['end'] - $block['start']) / $this->seconds) + 1;
+        $offset = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
+        $top    = round($i * ($this->options['cellheight'] + 1));
+        $left   = round($offset * $this->options['cellwidth']);
+        $width  = round($days * $this->options['cellwidth'] - 9);
+        $height = round($this->options['cellheight']-8);
+        $class  = ($block['class']) ? ' ' . $block['class'] : '';
+        $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . (($days > 100) ? '' : $days) . '</strong></span>';
+
+        $firstTimeEnter=false;
+        $rememberLastId=$block['label'];
+      }else if($rememberLastId!=$block['label']){
+        $html[] = '</li>';
+
+        $html[] = '<li class="gantt-item">';
+
+        // days
+        $html[] = '<ul class="gantt-days">';
+        foreach($this->days as $day) {
+
+          $weekend = ($day->isWeekend()) ? ' weekend' : '';
+          $today   = ($day->isToday())   ? ' today' : '';
+
+          $html[] = '<li class="gantt-day' . $weekend . $today . '" ' . $wrapstyle . '><span ' . $cellstyle . '>' . $day . '</span></li>';
+        }
+        $html[] = '</ul>';
+
+        // the block
+        $days   = (($block['end'] - $block['start']) / $this->seconds);
+        $offset = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
+        $top    = round($i * ($this->options['cellheight'] + 1));
+        $left   = round($offset * $this->options['cellwidth']);
+        $width  = round($days * $this->options['cellwidth'] - 9);
+        $height = round($this->options['cellheight']-8);
+        $class  = ($block['class']) ? ' ' . $block['class'] : '';
+        $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $days . '</strong></span>';
+
+        $rememberLastId=$block['label'];
+
+
+      }else if($rememberLastId==$block['label']){
+
+        $days   = (($block['end'] - $block['start']) / $this->seconds);
+        $offset = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
+        $top    = round($i * ($this->options['cellheight'] + 1));
+        $left   = round($offset * $this->options['cellwidth']);
+        $width  = round($days * $this->options['cellwidth'] - 9);
+        $height = round($this->options['cellheight']-8);
+        $class  = ($block['class']) ? ' ' . $block['class'] : '';
+        $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . $days . '</strong></span>';
+
       }
-      $html[] = '</ul>';
-
-      // the block
-      $days   = (($block['end'] - $block['start']) / $this->seconds) + 1;
-      $offset = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
-      $top    = round($i * ($this->options['cellheight'] + 1));
-      $left   = round($offset * $this->options['cellwidth']);
-      $width  = round($days * $this->options['cellwidth'] - 9);
-      $height = round($this->options['cellheight']-8);
-      $class  = ($block['class']) ? ' ' . $block['class'] : '';
-      $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px"><strong class="gantt-block-label">' . (($days > 100) ? '' : $days) . '</strong></span>';
-      $html[] = '</li>';
 
     }
 
@@ -181,7 +247,8 @@ class Gantti {
 
   }
 
-  function __toString() {
+
+ function __toString() {
     return $this->render();
   }
 
