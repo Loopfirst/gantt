@@ -44,7 +44,7 @@ $gantt = new Gantti($gantt, array(
 <html lang="en">
 <head>
 
-  <title>Loopfirst Gantt Chart</title>
+  <title>Loopfirst Ganttmobile</title>
   <meta charset="utf-8" />
 
   <link rel="stylesheet" href="styles/css/screen.css" />
@@ -61,7 +61,7 @@ $gantt = new Gantti($gantt, array(
 <header>
 
 <h1>Loopfirst</h1>
-<h2>Development Gantt Chart</h2>
+<h2>Development Ganttmobile</h2>
 
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
