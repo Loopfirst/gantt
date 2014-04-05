@@ -45,14 +45,17 @@ class Gantti
         foreach($this->data as $d)
         {
 
+            $is_completed = ((@$d['class'] == null) ? false : true);
+            $is_completed = $is_completed || ((isset($d['class']) == 'complete') ? true : false);
+
             $this->blocks[] = array(
-                'label' => $d['label'],
+                'label' => ((!$is_completed) ? $d['label'] : 'Completed'),
                 'start' => $start = strtotime($d['start']),
                 'end'   => $end   = strtotime(
                     (!isset($d['end'])) ? '2014-12-31' : $d['end']
                 ),
                 'class' => @$d['class'],
-                'info'  => @$d['info']
+                'info'  => ((!$is_completed) ? @$d['info'] : @$d['label'])
                 );
 
             if(!$this->first || $this->first > $start) $this->first = $start;

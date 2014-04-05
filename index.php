@@ -102,7 +102,7 @@ $gantt = new Gantti($gantt, array(
     'label' => 'Label 1',
     'start' => 'YYYY-MM-DD',
     ['end'   => 'YYYY-MM-DD',]
-    ['class' => '', 'important', or 'urgent',]
+    ['class' => '', 'important', or 'urgent', 'completed']
     ['info'  => 'On hover tooltip']
 );
 
@@ -131,11 +131,14 @@ echo htmlentities(trim($code)); ?>
     <li><p></p></li>
     <li>optional</li>
     <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
-    <li>class: Available by default: important, urgent</li>
+    <li>class: Available by default: important, urgent, completed</li>
     <li>info: Extra info
   </ul>
-
 </p>
+
+  <p>
+  *Caveats: When class is completed, don't have any overlapping dates
+  </p>
 
 </article>
 

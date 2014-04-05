@@ -15,6 +15,7 @@ $color-text-title:       #fff;
 $color-block-default:    #24ade3;
 $color-block-important:  #f05a24;
 $color-block-urgent:     #e32551;
+$color-block-completed:  #e3e3e3;
 
 $color-scrollbar-back:   $color-background-dark;
 $color-scrollbar-thumb:  #93a1a1;
@@ -165,6 +166,9 @@ body div {
 }
 .gantt-block.urgent {
   background: $color-block-urgent;
+}
+.gantt-block.completed {
+  background: $color-block-completed;
 }
 
 /* today sign */
