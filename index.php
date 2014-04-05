@@ -136,9 +136,15 @@ echo htmlentities(trim($code)); ?>
   </ul>
 </p>
 
-  <p>
-  *Caveats: When class is completed, don't have any overlapping dates
-  </p>
+<p>
+  <h2>Caveats</h2>
+
+  <ul>
+    <li> End day is needed when class == 'completed'</li>
+    <li> There is no handling of overlapping blocks. </li>
+  </ul>
+
+</p>
 
 </article>
 
