@@ -45,8 +45,11 @@ class Gantti
         foreach($this->data as $d)
         {
 
-            $is_completed = ((@$d['class'] == null) ? false : true);
-            $is_completed = $is_completed || ((isset($d['class']) == 'complete') ? true : false);
+            $is_completed = false;
+            if (isset($d['class']))
+            {
+                $is_completed = ($d['class'] == 'completed');
+            }
 
             $this->blocks[] = array(
                 'label' => ((!$is_completed) ? $d['label'] : 'Completed'),
