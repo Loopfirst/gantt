@@ -53,7 +53,9 @@ class Gantti
 
             $this->blocks[] = array(
                 'label' => ((!$is_completed) ? $d['label'] : 'Completed'),
-                'start' => $start = strtotime($d['start']),
+                'start' => $start = strtotime(
+                    ((!$is_completed) ? $d['start'] : $d['end'])
+                ),
                 'end'   => $end   = strtotime(
                     (!isset($d['end'])) ? '2014-12-31' : $d['end']
                 ),
