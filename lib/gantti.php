@@ -158,8 +158,7 @@ class Gantti
         {
             $weekend = ($day->isWeekend()) ? ' weekend' : '';
 
-            # had to reset a day prior because of a day change somewhere?
-            $today   = ($day->isYesterday())   ? ' today' : '';
+            $today   = ($day->isToday())   ? ' today' : '';
 
             $html[] = '<li class="gantt-day' . $weekend . $today . '" ' . $wrapstyle . '><span ' . $cellstyle . '>' . $day->padded() . '</span></li>';
         }
@@ -242,7 +241,7 @@ class Gantti
 
             // today
             $today  = $this->cal->today();
-            $offset = (($today->timestamp - $this->first->month()->timestamp) / $this->seconds) - 1;
+            $offset = (($today->timestamp - $this->first->month()->timestamp) / $this->seconds);
             $left   = round($offset * $this->options['cellwidth']) + round(($this->options['cellwidth'] / 2) - 1);
 
             if($today->timestamp > $this->first->month()->firstDay()->timestamp && $today->timestamp < $this->last->month()->lastDay()->timestamp)
