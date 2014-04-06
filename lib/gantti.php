@@ -50,6 +50,12 @@ class Gantti
             $d['color'] = isset($d['color']) ? $d['color'] : '';
 
 
+            if ( is_bool($d['done']) )
+            {
+                $d['done'] = $d['done'] ? 100 : 0;
+            }
+
+
             $is_completed = (strpos($d['color'], 'completed') !== false);
 
 

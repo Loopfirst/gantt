@@ -106,7 +106,7 @@ $gantt = new Gantti($gantt, array(
     ['end'   => 'YYYY-MM-DD',]
     ['color' => '', 'blue', 'green', 'orange', 'red', 'yellow', ]
     ['info'  => 'On hover tooltip',]
-    ['done'  => %, 'Renamed Label', 'none']
+    ['done'  => %, 'Renamed Label', 'none', true, false]
 );
 
 \$data[] = array(
