@@ -70,6 +70,8 @@ $gantt = new Gantti($gantt, array(
 <script src="js/main.js"></script>
 
 <script src="js/jquery.overscroll.js"></script>
+<script src="js/jquery.scrollTo.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
 
 </header>
 
@@ -82,7 +84,7 @@ $gantt = new Gantti($gantt, array(
     <section class="gantt-data">
       <header>
         <ul>
-          <li><a href="#">Today</a></li>
+          <li><a href="#" id="gototoday">Today</a></li>
         </ul>
     </section>
   </figure>

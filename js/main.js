@@ -16,25 +16,19 @@ $(document).tooltip({
 function kickoff() {
     scrollToToday();
     overScroll();
+    clickEvents();
 }
 
 
 function scrollToToday() {
-    $("body > section").each(function() {
-        var id = "#" + $(this).attr('id');
+    var day_offset = -7;
 
-        try {
-            $(id + " .today")[0].scrollIntoView();
+    var position = $(".gantt-day").width() * (day_offset + 0.5);
 
-            var scrollLeft = $(id + " .gantt-data").scrollLeft();
-            var position = $(id + " .today").position().left - $(id + " .gantt-day").width() * 7;
-            $(id + " .gantt-data").scrollLeft(scrollLeft + position);
-        } catch (e) {
-            null;
-        }
+    $(".gantt-data").scrollTo("time", 1500, {
+        offset: position,
+        easing: 'easeOutQuad'
     });
-
-    $(document).scrollTop(0);
 }
 
 
@@ -45,5 +39,8 @@ function overScroll() {
 }
 
 function clickEvents() {
-    $('')
+    $('#gototoday').click(function(e) {
+        scrollToToday();
+        e.preventDefault();
+    });
 }
