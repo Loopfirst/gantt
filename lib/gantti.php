@@ -44,33 +44,40 @@ class Gantti
         foreach($this->data as $d)
         {
             $is_completed = false;
+            $completed_label = '';
             $d['label'] = (isset($d['label']) ? $d['label'] : '');
+            $d['done'] = isset($d['done']) ? $d['done'] : 0;
 
 
-            // check to see if task has been completed
-            if (isset($d['class']) || isset($d['done']))
+            // if 'class' contains 'completed', is_completed = true
+            if ( isset($d['class']) )
             {
-                if (isset($d['class']))
-                {
-                    // if 'class' contains 'completed', is_completed
-                    $is_completed = (strpos($d['class'], 'completed') !== false);
-                }
+                $is_completed = (strpos($d['class'], 'completed') !== false);
 
-                if (isset($d['done']))
-                {
-                    // if 'done' key is provided, then we know it is completed
-                    $is_completed = $is_completed || (isset($d['done']));
-                    $d['class'] = str_replace('completed', '', $d['class']);
-                    $d['class'] = $d['class'] . ' completed';
-
-                }
-                    $completed_label = (!isset($d['done']) ? 'Completed' : $d['done']);
+                // set default label for completed tasks
+                if (is_numeric($d['done']))
+                    $completed_label = 'Completed';
             }
 
 
-            // set values for parsing
+            // done is a label and its 100% completed
+            if ( !is_numeric($d['done']) )
+            {
+                $is_completed = true;
+
+                // grab label from 'done' and set done = 100
+                $completed_label = $d['done'];
+                $d['done'] = 100;
+
+                // write 'completed' into 'class' without repeating
+                $d['class'] = str_replace('completed', '', $d['class']);
+                $d['class'] = $d['class'] . ' completed';
+            }
+
+
+            // parse values from data into $blocks
             $this->blocks[] = array(
-                'label' => ((!$is_completed) ? $d['label'] : $completed_label),
+                'label' => ( (!$is_completed) ? $d['label'] : $completed_label ),
                 'start' => $start = strtotime(
                     ((!$is_completed) ? $d['start'] : $d['end'])
                 ),
@@ -78,8 +85,10 @@ class Gantti
                     (!isset($d['end'])) ? '2014-12-31' : $d['end']
                 ),
                 'class' => @$d['class'],
-                'info'  => ((!$is_completed) ? @$d['info'] : @$d['label'])
+                'info'  => ((!$is_completed) ? @$d['info'] : @$d['label']),
+                'done'  => @$d['done']
                 );
+
 
             // iter: set range of blocks
             if(!$this->first || $this->first > $start) $this->first = $start;
@@ -241,17 +250,20 @@ class Gantti
                 $rememberLastId=$block['label'];
             }
 
-            $days   = (($block['end'] - $block['start']) / $this->seconds) + 1;
-            $offset = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
-            $top    = round($i * ($this->options['cellheight'] + 1));
-            $left   = round($offset * $this->options['cellwidth']);
-            $width  = round($days * $this->options['cellwidth'] - 9);
-            $height = round($this->options['cellheight']-8);
-            $class  = ($block['class']) ? ' ' . $block['class'] : '';
-            $days   = ($days > 100 || $days == 1) ? '' : $days;
-            $info   = $block['info'];
+            $days       = (($block['end'] - $block['start']) / $this->seconds) + 1;
+            $offset     = (($block['start'] - $this->first->month()->timestamp) / $this->seconds);
+            $top        = round($i * ($this->options['cellheight'] + 1));
+            $left       = round($offset * $this->options['cellwidth']);
+            $width      = round($days * $this->options['cellwidth'] - 9);
+            $percentage = $block['done'];
+            $height     = round($this->options['cellheight']-8);
+            $class      = ($block['class']) ? ' ' . $block['class'] : '';
+            $days       = ($days > 100 || $days == 1) ? '' : $days;
+            $info       = $block['info'];
 
             $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . $info .'">
+                <span class="gantt-text-percentage">' . $percentage . '%</span>
+                <div class="gantt-block-percentage" data-percent="' . $percentage . '%" style="width: '. $percentage . '%"> </div>
                 <strong class="gantt-block-label">' . $days . '</strong>
             </span>';
 
