@@ -104,9 +104,9 @@ $gantt = new Gantti($gantt, array(
     'label' => 'Label 1',
     'start' => 'YYYY-MM-DD',
     ['end'   => 'YYYY-MM-DD',]
-    ['class' => 'important', 'urgent', 'completed', '...']
+    ['class' => 'blue', 'green', 'orange', 'red', 'yellow', ]
     ['info'  => 'On hover tooltip',]
-    ['done'  => percentage or 'Completed Label',]
+    ['done'  => %, 'Renamed Label', 'none']
 );
 
 \$data[] = array(
@@ -134,9 +134,9 @@ echo htmlentities(trim($code)); ?>
     <li><p></p></li>
     <li>optional</li>
     <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
-    <li>class: Available by default: important, urgent, completed</li>
+    <li>class: Colors</li>
     <li>info: Extra info</li>
-    <li>done: Percentage (between 0, 99) or completed label</li>
+    <li>done: Percentage (between 0, 99), a renamed label, or none</li>
   </ul>
 </p>
 
