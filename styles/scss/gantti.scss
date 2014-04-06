@@ -102,7 +102,7 @@ body > section {
 /* data section */
 .gantt-data {
   position: relative;
-  overflow-x: scroll;
+  // overflow-x: scroll;
   margin-left: $aside-width;
   white-space: nowrap;
 }
