@@ -20,7 +20,7 @@ function scrollToToday() {
             $(id + " .today")[0].scrollIntoView();
 
             var scrollLeft = $(id + " .gantt-data").scrollLeft();
-            var position = $(id + " .today").position().left - $(id + " .gantt-day").width() * 1;
+            var position = $(id + " .today").position().left - $(id + " .gantt-day").width() * 7;
             $(id + " .gantt-data").scrollLeft(scrollLeft + position);
         } catch (e) {
             null;
