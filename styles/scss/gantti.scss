@@ -1,7 +1,7 @@
 /* Sass Variables */
 
 $color-background-dark:  #25363c;
-$color-background-light: #354348;
+$color-background-light: rgba(0,0,0,0.1);
 
 $color-lines:            darken($color-background-dark, 3%);
 $color-today:            #fff;
@@ -21,6 +21,8 @@ $color-scrollbar-back:   $color-background-dark;
 $color-scrollbar-thumb:  #93a1a1;
 
 $aside-width: 200px;
+
+@import "compass";
 
 /* gantt styles */
 .gantt {
@@ -122,6 +124,11 @@ body div {
 /* data items */
 .gantt-item {
   position: relative;
+  @include transition(all 0.3s ease);
+  background-color: rgba(255,255,255,0.0);
+}
+.gantt-item:hover {
+  background-color: rgba(255,255,255,0.05); 
 }
 .gantt-days {
   overflow: hidden;
@@ -158,18 +165,20 @@ body div {
 }
 
 /* block colors */
+
+@mixin block-colors($color) {
+  background: $color;
+  &:hover { background: darken($color, 7)  }
+}
+
 .gantt-block {
-  background: $color-block-default;
+  @include transition(all 0.3s ease);
+  @include block-colors($color-block-default);
 }
-.gantt-block.important {
-  background: $color-block-important;
-}
-.gantt-block.urgent {
-  background: $color-block-urgent;
-}
-.gantt-block.completed {
-  background: $color-block-completed;
-}
+
+.gantt-block.important  { @include block-colors($color-block-important); }
+.gantt-block.urgent     { @include block-colors($color-block-urgent); }
+.gantt-block.completed  { @include block-colors($color-block-completed); }
 
 /* today sign */
 .gantt time {

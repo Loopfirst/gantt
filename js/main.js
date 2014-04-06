@@ -1,4 +1,5 @@
 $(document).ready(kickoff);
+
 $(document).tooltip({
     tooltipClass: "tooltip",
     hide: false,
@@ -6,13 +7,10 @@ $(document).tooltip({
     track: true
 });
 
-
-
 function kickoff() {
     scrollToToday();
     hoverForInfo();
 }
-
 
 function scrollToToday() {
     $("body > div[id]").each(function() {
