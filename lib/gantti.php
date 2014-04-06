@@ -158,7 +158,8 @@ class Gantti
         {
             $weekend = ($day->isWeekend()) ? ' weekend' : '';
 
-            $today   = ($day->isToday())   ? ' today' : '';
+            // something is very strange with the days
+            $today   = ($day->isYesterday())   ? ' today' : '';
 
             $html[] = '<li class="gantt-day' . $weekend . $today . '" ' . $wrapstyle . '><span ' . $cellstyle . '>' . $day->padded() . '</span></li>';
         }
@@ -166,6 +167,8 @@ class Gantti
 
         // end header
         $html[] = '</header>';
+
+
 
         // main items
         $html[] = '<ul class="gantt-items" ' . $totalstyle . '>';
@@ -240,7 +243,8 @@ class Gantti
         {
 
             // today
-            $today  = $this->cal->today();
+            // something is very strange with the days
+            $today  = $this->cal->yesterday();
             $offset = (($today->timestamp - $this->first->month()->timestamp) / $this->seconds);
             $left   = round($offset * $this->options['cellwidth']) + round(($this->options['cellwidth'] / 2) - 1);
 

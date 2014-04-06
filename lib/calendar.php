@@ -268,11 +268,10 @@ class Calendar {
     } else {
 
       if(isset($args[0])) {
-        $ts = (is_int($args[0])) ? $args[0] : strtotime($args[0]);
+        $ts = (is_int($args[0])) ? $args[0] : strtotime($args[0], time());
       } else {
         $ts = time();
       }
-
       if(!$ts) return false;
 
       list($year, $month, $day, $hour, $minute, $second) = explode('-', date('Y-m-d-H-i-s', $ts));
@@ -284,7 +283,7 @@ class Calendar {
   }
 
   function today() {
-    return $this->date('today');
+    return $this->date('now');
   }
 
   function now() {

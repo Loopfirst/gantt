@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Los_Angeles');
+
 require('lib/gantti.php');
 require('data/front.php');
 require('data/back.php');
