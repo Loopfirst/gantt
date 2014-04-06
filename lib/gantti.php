@@ -41,18 +41,36 @@ class Gantti
 
     function parse()
     {
-
         foreach($this->data as $d)
         {
-
             $is_completed = false;
-            if (isset($d['class']))
+            $d['label'] = (isset($d['label']) ? $d['label'] : '');
+
+
+            // check to see if task has been completed
+            if (isset($d['class']) || isset($d['done']))
             {
-                $is_completed = ($d['class'] == 'completed');
+                if (isset($d['class']))
+                {
+                    // if 'class' contains 'completed', is_completed
+                    $is_completed = (strpos($d['class'], 'completed') !== false);
+                }
+
+                if (isset($d['done']))
+                {
+                    // if 'done' key is provided, then we know it is completed
+                    $is_completed = $is_completed || (isset($d['done']));
+                    $d['class'] = str_replace('completed', '', $d['class']);
+                    $d['class'] = $d['class'] . ' completed';
+
+                }
+                    $completed_label = (!isset($d['done']) ? 'Completed' : $d['done']);
             }
 
+
+            // set values for parsing
             $this->blocks[] = array(
-                'label' => ((!$is_completed) ? $d['label'] : 'Completed'),
+                'label' => ((!$is_completed) ? $d['label'] : $completed_label),
                 'start' => $start = strtotime(
                     ((!$is_completed) ? $d['start'] : $d['end'])
                 ),
@@ -63,12 +81,13 @@ class Gantti
                 'info'  => ((!$is_completed) ? @$d['info'] : @$d['label'])
                 );
 
+            // iter: set range of blocks
             if(!$this->first || $this->first > $start) $this->first = $start;
             if(!$this->last  || $this->last  < $end)   $this->last  = $end;
 
         }
 
-        // add 1 extra months
+        // set range of blocks, adding 1 extra month at the end
         $this->first = $this->cal->date($this->first);
         $this->last  = $this->cal->date(strtotime("+1 months", date($this->last)));
 
