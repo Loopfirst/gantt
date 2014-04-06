@@ -67,8 +67,9 @@ $gantt = new Gantti($gantt, array(
 
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
 <script src="js/main.js"></script>
+
+<script src="js/jquery.overscroll.js"></script>
 
 </header>
 

@@ -1,19 +1,26 @@
 $(document).ready(kickoff);
 
+
 $(document).tooltip({
     tooltipClass: "tooltip",
     hide: false,
-    show: false,
-    track: true
+    show: {
+        duration: 100,
+        delay: 500
+    },
+    track: true,
+
 });
+
 
 function kickoff() {
     scrollToToday();
-    hoverForInfo();
+    overScroll();
 }
 
+
 function scrollToToday() {
-    $("body > div[id]").each(function() {
+    $(".charts > div").each(function() {
         var id = "#" + $(this).attr('id');
 
         try {
@@ -31,7 +38,12 @@ function scrollToToday() {
 }
 
 
-function hoverForInfo() {
-    // $('.gantt-block').hover();
-    null;
+function overScroll() {
+    $('section.gantt-data').overscroll({
+        direction: 'horizontal'
+    });
+}
+
+function clickEvents() {
+    $('')
 }
