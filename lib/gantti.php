@@ -96,9 +96,9 @@ class Gantti
 
         }
 
-        // set range of blocks, adding 1 extra month at the end
+        // set range of blocks, adding extra months at the end
         $this->first = $this->cal->date($this->first);
-        $this->last  = $this->cal->date(strtotime("+1 months", date($this->last)));
+        $this->last  = $this->cal->date(strtotime("+2 months", date($this->last)));
 
         $current = $this->first->month();
         $lastDay = $this->last->month()->lastDay()->timestamp;
