@@ -44,35 +44,44 @@ class Gantti
         foreach($this->data as $d)
         {
             $is_completed = false;
-            $completed_label = '';
+            $completed_label = 'Completed';
             $d['label'] = (isset($d['label']) ? $d['label'] : '');
             $d['done'] = isset($d['done']) ? $d['done'] : 0;
+            $d['class'] = isset($d['class']) ? $d['class'] : '';
 
 
-            // if 'class' contains 'completed', is_completed = true
-            if ( isset($d['class']) )
+            $is_completed = (strpos($d['class'], 'completed') !== false);
+
+
+            // 'done' key is a percentage
+            if (is_numeric($d['done']))
             {
-                $is_completed = (strpos($d['class'], 'completed') !== false);
-
-                // set default label for completed tasks
-                if (is_numeric($d['done']))
-                    $completed_label = 'Completed';
+                if ($d['done'] == 100)
+                    $d['done'] = $completed_label;
             }
 
 
-            // done is a label and its 100% completed
-            if ( !is_numeric($d['done']) )
+            // 'done' key is a label
+            if (!is_numeric($d['done']))
             {
-                $is_completed = true;
+                if ($d['done'] == 'none')
+                {
+                    $d['class'] = $d['class'] . ' no-percent';
+                }
+                else
+                {
+                    $is_completed = true;
 
-                // grab label from 'done' and set done = 100
-                $completed_label = $d['done'];
-                $d['done'] = 100;
+                    // grab label from 'done' and set done = 100
+                    $completed_label = $d['done'];
+                    $d['done'] = 100;
 
-                // write 'completed' into 'class' without repeating
-                $d['class'] = str_replace('completed', '', $d['class']);
-                $d['class'] = $d['class'] . ' completed';
+                    // write 'completed' into 'class' without repeating
+                    $d['class'] = str_replace('completed', '', $d['class']);
+                    $d['class'] = $d['class'] . ' completed';
+                }
             }
+
 
 
             // parse values from data into $blocks
@@ -255,15 +264,15 @@ class Gantti
             $top        = round($i * ($this->options['cellheight'] + 1));
             $left       = round($offset * $this->options['cellwidth']);
             $width      = round($days * $this->options['cellwidth'] - 9);
-            $percentage = $block['done'];
+            $percentage = $block['done'] . '%';
             $height     = round($this->options['cellheight']-8);
             $class      = ($block['class']) ? ' ' . $block['class'] : '';
             $days       = ($days > 100 || $days == 1) ? '' : $days;
             $info       = $block['info'];
 
             $html[] = '<span class="gantt-block' . $class . '" style="left: ' . $left . 'px; width: ' . $width . 'px; height: ' . $height . 'px" title="' . $info .'">
-                <span class="gantt-text-percentage">' . $percentage . '%</span>
-                <div class="gantt-block-percentage" data-percent="' . $percentage . '%" style="width: '. $percentage . '%"> </div>
+                <span class="gantt-text-percentage">' . $percentage . '</span>
+                <div class="gantt-block-percentage" data-percent="' . $percentage . '%" style="width: '. $percentage . '"> </div>
                 <strong class="gantt-block-label">' . $days . '</strong>
             </span>';
 
