@@ -47,10 +47,10 @@ class Gantti
             $completed_label = 'Completed';
             $d['label'] = (isset($d['label']) ? $d['label'] : '');
             $d['done'] = isset($d['done']) ? $d['done'] : 0;
-            $d['class'] = isset($d['class']) ? $d['class'] : '';
+            $d['color'] = isset($d['color']) ? $d['color'] : '';
 
 
-            $is_completed = (strpos($d['class'], 'completed') !== false);
+            $is_completed = (strpos($d['color'], 'completed') !== false);
 
 
             // 'done' key is a percentage
@@ -66,7 +66,7 @@ class Gantti
             {
                 if ($d['done'] == 'none')
                 {
-                    $d['class'] = $d['class'] . ' no-percent';
+                    $d['color'] = $d['color'] . ' no-percent';
                 }
                 else
                 {
@@ -76,9 +76,9 @@ class Gantti
                     $completed_label = $d['done'];
                     $d['done'] = 100;
 
-                    // write 'completed' into 'class' without repeating
-                    $d['class'] = str_replace('completed', '', $d['class']);
-                    $d['class'] = $d['class'] . ' completed';
+                    // write 'completed' into 'color' without repeating
+                    $d['color'] = str_replace('completed', '', $d['color']);
+                    $d['color'] = $d['color'] . ' completed';
                 }
             }
 
@@ -93,7 +93,7 @@ class Gantti
                 'end'   => $end   = strtotime(
                     (!isset($d['end'])) ? '2014-12-31' : $d['end']
                 ),
-                'class' => @$d['class'],
+                'class' => @$d['color'],
                 'info'  => ((!$is_completed) ? @$d['info'] : @$d['label']),
                 'done'  => @$d['done']
                 );
