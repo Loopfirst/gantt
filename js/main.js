@@ -20,7 +20,7 @@ function kickoff() {
 
 
 function scrollToToday() {
-    $(".charts > div").each(function() {
+    $("body > section").each(function() {
         var id = "#" + $(this).attr('id');
 
         try {

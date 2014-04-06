@@ -73,21 +73,36 @@ $gantt = new Gantti($gantt, array(
 
 </header>
 
-<div id="git_branches">
+<section id="options">
+  <figure class="gantt">
+    <figcaption>Options</figcaption>
+    <aside>
+
+    </aside>
+    <section class="gantt-data">
+      <header>
+        <ul>
+          <li><a href="#">Today</a></li>
+        </ul>
+    </section>
+  </figure>
+</section>
+
+<section id="git_branches">
   <?php echo $git_branches ?>
-</div>
+</section>
 
-<div id="frontend">
+<section id="frontend">
   <?php echo $frontend ?>
-</div>
+</section>
 
-<div id="backend">
+<section id="backend">
   <?php echo $backend ?>
-</div>
+</section>
 
-<div id="gantt">
+<section id="gantt">
   <?php echo $gantt ?>
-</div>
+</section>
 
 <article>
 
