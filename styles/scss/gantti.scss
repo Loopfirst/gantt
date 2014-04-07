@@ -1,6 +1,6 @@
 /* Sass Variables */
 
-$color-background-dark:  #25363c;
+$color-background-dark:  #363e47;
 $color-background-light: rgba(0,0,0,0.1);
 
 $color-lines:            darken($color-background-dark, 3%);
@@ -72,7 +72,7 @@ body > section {
   bottom: 0;
   top: 0;
   width: $aside-width - 1;
-  border-right: 1px solid darken($color-lines, 5%);
+  padding-right: 1px;
   z-index: 2;
 }
 .gantt aside:before {
@@ -87,13 +87,13 @@ body > section {
   z-index: 3;
 }
 .gantt aside .gantt-labels {
-  border-top: 1px solid $color-lines;
+  padding-top: 1px;
 }
 .gantt aside .gantt-label strong {
   display: block;
   padding: 0 20px;
   color: $color-text-label-aside;
-  border-bottom: 1px solid $color-lines;
+  padding-bottom: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -117,8 +117,8 @@ body > section {
 }
 .gantt header .gantt-month strong {
   display: block;
-  border-right:  1px solid $color-lines;
-  border-bottom: 1px solid $color-lines;
+  padding-right:  1px;
+  padding-bottom: 1px;
 }
 .gantt header .gantt-day span {
   text-indent: 0;
@@ -148,8 +148,8 @@ body > section {
 }
 .gantt-day span {
   display: block;
-  border-right:  1px solid $color-lines;
-  border-bottom: 1px solid $color-lines;
+  padding-right:  1px;
+  padding-bottom: 1px;
   text-indent: -50000px;
 }
 .gantt-day.weekend span {
@@ -223,7 +223,7 @@ body > section {
     content: "";
     left: 100%;
     // background: rgba(0,0,0,0.2);
-    background: #717c80;
+    background: #556270;
     border-radius: 2px;
   }
 }
