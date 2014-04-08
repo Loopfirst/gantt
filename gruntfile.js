@@ -93,6 +93,12 @@ module.exports = function(grunt) {
                 options: {
                     logConcurrentOutput: true
                 }
+            },
+            no_compass: {
+                tasks: ['php', 'watch'],
+                options: {
+                    logConcurrentOutput: true
+                }
             }
         }
     });
@@ -124,6 +130,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('server', 'serve');
     grunt.registerTask('serve', 'Starts watchers', ['concurrent:watchers']);
+
+    grunt.registerTask('no_compass', 'Starts watchers without compass', ['concurrent:no_compass']);
 
 
     // By default, lint and run all tests.
