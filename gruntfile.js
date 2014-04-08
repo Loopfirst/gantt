@@ -3,8 +3,13 @@
 
 var children = [];
 var standardio = ['pipe', process.stdout, process.stderr];
+// process.stdin.resume();
 
 
+
+/*=================================================================================
+functions
+=================================================================================== */
 function spawnFailed(error, result, code) {
     if (error !== null) {
         console.log('child process died');
@@ -18,7 +23,28 @@ function spawnFailed(error, result, code) {
     }
 }
 
+// fuck if I know why it no work, i suspect someone has a claim on process.on('SIGINT')
+// var util = require('util');
+// console.log(util.inspect(process, true));
 
+// // captures ctrl+c event
+// process.on('SIGINT', function() {
+//     console.log('got ctrl+c, killing children');
+
+//     children.forEach(function(child) {
+//         console.log('killing child: ' + child.name + '(' + child.process.pid + ')');
+//         child.process.kill();
+//     });
+
+
+//     process.exit();
+// });
+
+
+
+/*=================================================================================
+Grunt
+=================================================================================== */
 
 module.exports = function(grunt) {
     // Loads all grunt maintained packages
