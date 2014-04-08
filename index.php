@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 require('lib/gantti.php');
 require('data/front.php');
 require('data/back.php');
-require('data/gantt.php');
+require('data/others.php');
 require('data/git_branches.php');
 
 date_default_timezone_set('UTC');
@@ -32,8 +32,8 @@ $backend = new Gantti($back, array(
   'today'      => true
 ));
 
-$gantt = new Gantti($gantt, array(
-  'title'      => 'Gantt',
+$others = new Gantti($others, array(
+  'title'      => 'Others',
   'cellwidth'  => 25,
   'cellheight' => 35,
   'today'      => true
@@ -102,8 +102,8 @@ $gantt = new Gantti($gantt, array(
   <?php echo $backend ?>
 </section>
 
-<section id="gantt">
-  <?php echo $gantt ?>
+<section id="others">
+  <?php echo $others ?>
 </section>
 
 <article>
