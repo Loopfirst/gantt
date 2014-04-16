@@ -1,7 +1,13 @@
 # untar data folder
-tar -xzf data.tar.gz
+echo
+echo "Uncompressing files"
+tar -xzvf data.tar.gz
+tar -xzvf styles.tar.gz
+
 
 # start up sequence
+echo
+echo "Starting boot process:"
 for var in \`env|cut -f1 -d=\`; do
   echo "PassEnv \$var" >> /app/apache/conf/httpd.conf;
 done
