@@ -1,15 +1,24 @@
 <?php
 
 date_default_timezone_set('America/Los_Angeles');
+date_default_timezone_set('UTC');
+setlocale(LC_ALL, 'en_US');
 
 require('lib/gantti.php');
+
+require('data/dev_schedule.php');
 require('data/front.php');
 require('data/back.php');
 require('data/others.php');
 require('data/git_branches.php');
 
-date_default_timezone_set('UTC');
-setlocale(LC_ALL, 'en_US');
+
+$dev_schedule = new Gantti($dev_schedule, array(
+  'title'      => 'Development Schedule',
+  'cellwidth'  => 25,
+  'cellheight' => 35,
+  'today'      => true
+));
 
 $git_branches = new Gantti($git_branches, array(
   'title'      => 'Git Branches',
@@ -88,6 +97,11 @@ $others = new Gantti($others, array(
         </ul>
     </section>
   </figure>
+</section>
+
+
+<section id="dev_schedule">
+  <?php echo $dev_schedule ?>
 </section>
 
 <section id="git_branches">
