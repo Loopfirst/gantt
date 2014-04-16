@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # untar data folder
 echo
 echo "Uncompressing files"
