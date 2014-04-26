@@ -1,0 +1,293 @@
+/* Sass Variables */
+
+$color-background-dark:  #363e47;
+$color-background-light: rgba(0,0,0,0.1);
+
+$color-lines:            darken($color-background-dark, 3%);
+$color-today:            #fff;
+
+$color-text:             #93a1a1;
+$color-text-today:       #fff;
+$color-text-label-aside: $color-text;
+$color-text-label-block: #fff;
+$color-text-title:       #fff;
+
+$color-block-default:    #24ade3;
+$color-block-red:        #e32551;
+$color-block-orange:     #f05a24;
+$color-block-yellow:     #ffc219;
+$color-block-green:      #5cb85c;
+$color-block-blue:       #428bca;
+$color-block-completed:  rgba(255,255,255,0.2);
+
+$color-scrollbar-back:   $color-background-dark;
+$color-scrollbar-thumb:  #93a1a1;
+
+$aside-width: 200px;
+
+@import "compass";
+
+/* options */
+#options header {
+  padding: 25px;
+}
+
+
+/* gantt styles */
+.gantt {
+  position: relative;
+  overflow: hidden;
+  color: $color-text;
+  background: $color-background-dark;
+}
+.gantt * {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+.gantt li {
+  list-style: none;
+}
+/* space between charts */
+body > section {
+    margin: 36px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* optional title */
+.gantt figcaption {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  font-size: 20px;
+  color: $color-text-title;
+  font-weight: 300;
+}
+
+/* sidebar */
+.gantt aside {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: $aside-width - 1;
+  padding-right: 1px;
+  z-index: 2;
+}
+.gantt aside:before {
+  position: absolute;
+  right: -7px;
+  pointer-events: none;
+  width: 7px;
+  top: 0;
+  bottom: 0;
+  content: "";
+  border-left: 1px solid rgba(255,255,255, .03);
+  z-index: 3;
+}
+.gantt aside .gantt-labels {
+  padding-top: 1px;
+}
+.gantt aside .gantt-label strong {
+  display: block;
+  padding: 0 20px;
+  color: $color-text-label-aside;
+  padding-bottom: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* data section */
+.gantt-data {
+  position: relative;
+  // overflow-x: scroll;
+  margin-left: $aside-width;
+  white-space: nowrap;
+}
+
+/* data section header */
+.gantt header .gantt-months {
+  overflow: hidden;
+}
+.gantt header .gantt-month {
+  float: left;
+  text-align: center;
+}
+.gantt header .gantt-month strong {
+  display: block;
+  padding-right:  1px;
+  padding-bottom: 1px;
+}
+.gantt header .gantt-day span {
+  text-indent: 0;
+  text-align: center;
+}
+.gantt header .gantt-day.today span {
+  color: $color-text-today;
+}
+
+/* data items */
+.gantt-item {
+  position: relative;
+  @include transition(all 0.3s ease);
+  background-color: rgba(255,255,255,0.0);
+
+  &:hover {
+    background-color: rgba(255,255,255,0.05);
+    
+    .gantt-text-percentage { opacity: 1; }
+  }
+}
+.gantt-days {
+  overflow: hidden;
+}
+.gantt-day {
+  float: left;
+}
+.gantt-day span {
+  display: block;
+  padding-right:  1px;
+  padding-bottom: 1px;
+  text-indent: -50000px;
+}
+.gantt-day.weekend span {
+  background: $color-background-light;
+}
+
+/* data blocks */
+.gantt-block {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 4px;
+  border-radius: 3px;
+  opacity: .9;
+  overflow: hidden;
+
+  &:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    content: "";
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+  -webkit-box-shadow: rgba(255,255,255, 0.2) 1px 1px 0 inset, rgba(0,0,0, 0.4) -1px -1px 0 inset;
+     -moz-box-shadow: rgba(255,255,255, 0.2) 1px 1px 0 inset, rgba(0,0,0, 0.4) -1px -1px 0 inset;
+          box-shadow: rgba(255,255,255, 0.2) 1px 1px 0 inset, rgba(0,0,0, 0.4) -1px -1px 0 inset;
+  }
+}
+.gantt-block-label {
+  display: block;
+  color: $color-text-label-block;
+  padding: 5px 10px 5px 22px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+}
+.completed .gantt-text-percentage,
+.completed .gantt-block-percentage,
+.no-percent .gantt-text-percentage,
+.no-percent .gantt-block-percentage {
+  display: none;
+}
+.gantt-text-percentage {
+  position: absolute;
+  right: 0;
+  color: #fff;
+  padding: 5px 10px;
+  opacity: 0;
+  @include transition(0.3s all ease);
+  z-index: 10;
+}
+.gantt-block-percentage {
+  height: 100%;
+  min-width: 16px;
+  position: absolute;
+  background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  background-size: 40px 40px;  
+  overflow: visible;
+
+  &:after {
+    z-index: 5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    min-width: 10000px;
+    content: "";
+    left: 100%;
+    // background: rgba(0,0,0,0.2);
+    background: #556270;
+    border-radius: 2px;
+  }
+}
+
+/* block colors */
+
+@mixin block-colors($color) {
+  background: $color;
+  &:hover { background: darken($color, 7)  }
+}
+
+.gantt-block {
+  @include transition(all 0.3s ease);
+  @include block-colors($color-block-default);
+}
+
+.gantt-block.red        { @include block-colors($color-block-red); }
+.gantt-block.orange     { @include block-colors($color-block-orange); }
+.gantt-block.yellow     { @include block-colors($color-block-yellow); }
+.gantt-block.green      { @include block-colors($color-block-green); }
+.gantt-block.blue       { @include block-colors($color-block-blue); }
+
+/* today sign */
+.gantt time {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  background: $color-today;
+  bottom: 0;
+  z-index: 1000;
+  text-indent: -12000px;
+  -webkit-box-shadow: rgba(0,0,0, .3) 0 0 10px;
+     -moz-box-shadow: rgba(0,0,0, .3) 0 0 10px;
+          box-shadow: rgba(0,0,0, .3) 0 0 10px;
+}
+.gantt time:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -4px;
+  border-left:  5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top:   5px solid $color-today;
+}
+
+/* scrollbar styles */
+.gantt ::-webkit-scrollbar {
+  background: $color-scrollbar-back;
+  height: 10px;
+}
+.gantt ::-webkit-scrollbar-thumb {
+  background: $color-scrollbar-thumb;
+  -webkit-box-shadow: rgba(255,255,255, .1) 0 1px 0 inset;
+     -moz-box-shadow: rgba(255,255,255, .1) 0 1px 0 inset;
+          box-shadow: rgba(255,255,255, .1) 0 1px 0 inset;
+}
+
+/* selection styles */
+.gantt ::-moz-selection {
+	background: #fff;
+	color: #000;
+}
+.gantt ::selection {
+	background: #fff;
+	color: #000;
+}
+

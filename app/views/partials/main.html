@@ -6,15 +6,74 @@
     <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     Always a pleasure scaffolding your apps.
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
 </div>
 
-<div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
-  </div>
-</div>
+<!--<div class="row marketing">-->
+  <!--<div ng-repeat="thing in awesomeThings">-->
+      <!--<h4>{{thing.name}}</h4>-->
+      <!--<p>{{thing.info}}</p>-->
+  <!--</div>-->
+<!--</div>-->
+
+<article>
+
+
+  <h2>Usage</h2>
+
+  <p>Data is stored in data/</p>
+
+  <p><pre>
+&lt;?php
+
+  $data = array();
+
+  $data[] = array(
+  'label' =&gt; 'Label 1',
+  'start' =&gt; 'YYYY-MM-DD',
+  ['end'   =&gt; 'YYYY-MM-DD',]
+  ['color' =&gt; '', 'blue', 'green', 'orange', 'red', 'yellow', ]
+  ['info'  =&gt; 'On hover tooltip',]
+  ['done'  =&gt; %, 'Renamed Label', 'none', true, false]
+  );
+
+  $data[] = array(
+  ...
+  );
+
+?&gt;
+  </pre></p>
+
+  <h2>Data</h2>
+
+  <p>Data is defined as an associative array (see the example above).</p>
+
+  <p>
+    For each project you get the following options:
+
+  <ul>
+    <li>label: The label will be displayed in the sidebar (same lable, same line)</li>
+    <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
+
+    <li><p></p></li>
+    <li>optional</li>
+    <li>end:   The end date (end of day). Must be in the following format: YYYY-MM-DD</li>
+    <li>color: Colors</li>
+    <li>info: Extra info</li>
+    <li>done: Percentage (between 0, 99), a renamed label, or none</li>
+  </ul>
+  </p>
+
+  <p>
+  <h2>Caveats</h2>
+
+  <ul>
+    <li> End day is needed when done</li>
+    <li> There is no handling of overlapping blocks. </li>
+  </ul>
+
+  </p>
+
+</article>
 
 <div class="footer">
   <p>♥ from the Yeoman team</p>
