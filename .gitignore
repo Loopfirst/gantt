@@ -4,3 +4,4 @@ styles/css/*
 
 # ignoring only because its in dropbox
 data/*
+.idea/*
